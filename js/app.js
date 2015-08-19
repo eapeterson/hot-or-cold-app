@@ -16,14 +16,13 @@ $(document).ready(function(){
 	var secretNumber = Math.floor((Math.random() * 100) + 1);
 		console.log (secretNumber);
 
-	/*--Use input value and Add to list--NOT WORKING*/
+	/*--Use input value and Add to list--*/
   	$(".game").on("click", "#guessButton", function() {
   		var guessedNumber = $("input#userGuess").val();
-  		var guessList = $("ul#guessList").val();
   		var text = $('#userGuess').val();
   		$('#userGuess').val('');
 		if(text.length){
-			$('<li />', {html:text}).prependTo(guessList);}
+			$('<li />', {html:text}).prependTo("#guessList");}
   	});
 	
 
@@ -79,8 +78,6 @@ $(document).ready(function(){
   			$("#feedback").text("Scorching!");
   		}*/
   	};
-
-	
 
 
   	/*--Counter increases--*/
