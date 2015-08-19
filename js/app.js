@@ -14,7 +14,21 @@ $(document).ready(function(){
 
   	/*--Choose a secret number--*/
 	var secretNumber = Math.floor((Math.random() * 100) + 1);
+  		console.log (secretNumber);
+
+	/*--To start new game--PARTIALLY WORKING*/
+  	$(".clearfix").on("click", ".new", newGame);
+
+
+  	function newGame () {
+
+		var secretNumber = Math.floor((Math.random() * 100) + 1);
 		console.log (secretNumber);
+		//$("#userGuess").val('');
+		//$("#guessList").val('');
+		//$("#feedback").val("Make your Guess!");
+	}
+
 
 	/*--Use input value and Add to list--*/
   	$(".game").on("click", "#guessButton", function() {
@@ -27,7 +41,7 @@ $(document).ready(function(){
 	
 
 
-	/*--Start comparing number--*/
+	/*--Start comparing number--NEED TO REFRESH MESSAGE EACH GUESS*/
   	$(".game").on("click", "#guessButton", compareNumber);
 
   	function compareNumber (event) {
@@ -89,10 +103,5 @@ $(document).ready(function(){
   	});
 
 
-  	//Possibly how to start new game
-  	/*$(".new").click(function newGame (event) {
-  		Math.floor((Math.random() * 100) + 1);
-
-  	})*/
-
+  	
 });
