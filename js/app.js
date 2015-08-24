@@ -24,84 +24,64 @@ $(document).ready(function(){
 
 		var secretNumber = Math.floor((Math.random() * 100) + 1);
 		console.log (secretNumber);
-		//$("#userGuess").val('');
-		//$("#guessList").val('');
-		//$("#feedback").val("Make your Guess!");
+		$("#userGuess").val('');
+		$("#count").val('0');
+		$("#guessList").empty();
+		$("#feedback").text("Make your Guess!");
 	}
 
 
 	/*--Use input value and Add to list--*/
   	$(".game").on("click", "#guessButton", function() {
-  		var guessedNumber = $("input#userGuess").val();
+  		
+  		guessedNumber = $("input#userGuess").val();
+  
   		var text = $('#userGuess').val();
   		$('#userGuess').val('');
 		if(text.length){
 			$('<li />', {html:text}).prependTo("#guessList");}
+
+		var delta = Math.abs(guessedNumber-secretNumber)
+		compareNumber(delta);
+
+		var numberOfGuess = $("#count");
+		numberOfGuess.html(parseInt(numberOfGuess.html(), 10)+1);
   	});
 	
 
 
-	/*--Start comparing number--NEED TO REFRESH MESSAGE EACH GUESS*/
-  	$(".game").on("click", "#guessButton", compareNumber);
+	/*--Start comparing number--*/
 
-  	function compareNumber (event) {
+  	function compareNumber (valueOfNumber) {
 
-  		console.log ("function on");
+  	
+  			console.log ("in function: " + valueOfNumber);
 
-  		var guessedNumber = $("input#userGuess").val();
-
-  		if (guessedNumber == secretNumber) {
-  			$("#feedback").text("Hooray, You Won!");
-  		} else if (guessedNumber > secretNumber - 5 && guessedNumber < secretNumber + 5) {
+  		if (valueOfNumber == 0) {
+  			$("#feedback").text("Hooray! You Won!")
+  		} else if (valueOfNumber <= 5 && valueOfNumber > 0) {
   			$("#feedback").text("Scorching!");
-  		} else if (guessedNumber <= secretNumber - 5 && guessedNumber > secretNumber - 10) {
+  		} else if (valueOfNumber <= 10 && valueOfNumber > 5) {
   			$("#feedback").text("Hot");
-  		} else if (guessedNumber >= secretNumber + 5 && guessedNumber < secretNumber + 10) {
-  			$("#feedback").text("Hot");
-  		} else if (guessedNumber <= secretNumber - 10 && guessedNumber > secretNumber - 20) {
+  		} else if (valueOfNumber <=20 && valueOfNumber > 10) {
   			$("#feedback").text("Warm");
-  		} else if (guessedNumber >= secretNumber + 10 && guessedNumber < secretNumber + 20) {
-  			$("#feedback").text("Warm");
-  		} else if (guessedNumber <= secretNumber - 20 && guessedNumber > secretNumber - 30) {
+  		} else if (valueOfNumber <= 30 && valueOfNumber > 20) {
   			$("#feedback").text("Chilly");
-  		} else if (guessedNumber >= secretNumber + 20 && guessedNumber < secretNumber + 30) {
-  			$("#feedback").text("Chilly");
-  		} else if (guessedNumber >= secretNumber + 30 || guessedNumber <= secretNumber - 30) {
-  			$("#feedback").text("Brr...Cold");
-  		} else {
-  			$("#feedback").text("Ice Cold");
-  		}
+  		} else if (valueOfNumber > 30) {
+  			$("#feedback").text("Brr...Cold!");
+  		} else {$("#feedback").text("Freezing");
+  		};
 
-  		/*if (guessedNumber == secretNumber) {
-  			$("#feedback").text("Hooray, You Won!");
-  		} else if (guessedNumber >= secretNumber + 30 || guessedNumber <= secretNumber - 30) {
-  			$("#feedback").text("Brr...Freezing");
-  		} else if (guessedNumber >= secretNumber + 20 && guessedNumber < secretNumber + 30) {
-  			$("#feedback").text("Chilly");
-  		} else if (guessedNumber <= secretNumber - 20 && guessedNumber > secretNumber - 30) {
-  			$("#feedback").text("Chilly");
-  		} else if (guessedNumber >= secretNumber + 10 && guessedNumber < secretNumber + 20) {
-  			$("#feedback").text("Warm");
-  		} else if (guessedNumber <= secretNumber - 10 && guessedNumber < secretNumber - 20) {
-  			$("#feedback").text("Warm");
-  		} else if (guessedNumber >= secretNumber + 5 && guessedNumber < secretNumber + 10) {
-  			$("#feedback").text("Hot");
-  		} else if (guessedNumber <= secretNumber - 5 && guessedNumber > secretNumber - 10) {
-  			$("#feedback").text("Hot");
-  		} else if (guessedNumber > secretNumber - 5 || guessedNumber < secretNumber + 5) {
-  			$("#feedback").text("Scorching!");
-  		}*/
   	};
 
 
   	/*--Counter increases--*/
 
-  	var numberOfGuess = $("#count");
+  	/*var numberOfGuess = $("#count");
 
   	$("#guessButton").click(function(){
   		numberOfGuess.html(parseInt(numberOfGuess.html(), 10)+1);
-  	});
-
+  	});*/
 
   	
 });
