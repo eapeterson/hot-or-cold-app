@@ -18,11 +18,12 @@ $(document).ready(function(){
 
 	/*--To start new game--*/
   	$(".clearfix").on("click", ".new", newGame);
+  	//add prevent default to keep url from adding # at end
 
 
   	function newGame () {
 
-		var secretNumber = Math.floor((Math.random() * 100) + 1);
+		secretNumber = Math.floor((Math.random() * 100) + 1);
 		console.log (secretNumber);
 		$("#userGuess").val('');
 		$("span").html("0");
@@ -61,24 +62,23 @@ $(document).ready(function(){
 
   	function compareNumber (valueOfNumber) {
 
-  	
-  			console.log ("in function: " + valueOfNumber);
+  		var = msg "";
 
-  		if (valueOfNumber == 0) {
-  			$("#feedback").text("Hooray! You Won!")
-  		} else if (valueOfNumber <= 5 && valueOfNumber > 0) {
-  			$("#feedback").text("Scorching!");
-  		} else if (valueOfNumber <= 10 && valueOfNumber > 5) {
-  			$("#feedback").text("Hot");
-  		} else if (valueOfNumber <=20 && valueOfNumber > 10) {
-  			$("#feedback").text("Warm");
-  		} else if (valueOfNumber <= 30 && valueOfNumber > 20) {
-  			$("#feedback").text("Chilly");
+  		if (valueOfNumber === 0) {
+  			msg = "Hooray! You Won!";
+  		} else if (valueOfNumber <= 5) {
+  			msg = "Scorching!";
+  		} else if (valueOfNumber <= 10) {
+  			msg = "Hot";
+  		} else if (valueOfNumber <=20) {
+  			msg = "Warm";
+  		} else if (valueOfNumber <= 30) {
+  			msg = "Chilly";
   		} else if (valueOfNumber > 30) {
-  			$("#feedback").text("Brr...Cold!");
-  		} else {$("#feedback").text("Freezing");
+  			msg = "Brr...Cold!";
   		};
 
+  		$("#feedback").text(msg);
   	};
 
   	
