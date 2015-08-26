@@ -16,7 +16,7 @@ $(document).ready(function(){
 	var secretNumber = Math.floor((Math.random() * 100) + 1);
   		console.log (secretNumber);
 
-	/*--To start new game--PARTIALLY WORKING*/
+	/*--To start new game--*/
   	$(".clearfix").on("click", ".new", newGame);
 
 
@@ -25,10 +25,11 @@ $(document).ready(function(){
 		var secretNumber = Math.floor((Math.random() * 100) + 1);
 		console.log (secretNumber);
 		$("#userGuess").val('');
-		$("#count").val('0');
+		$("span").html("0");
 		$("#guessList").empty();
 		$("#feedback").text("Make your Guess!");
-	}
+		
+	};
 
 
 	/*--Use input value and Add to list--*/
@@ -40,6 +41,12 @@ $(document).ready(function(){
   		$('#userGuess').val('');
 		if(text.length){
 			$('<li />', {html:text}).prependTo("#guessList");}
+
+		parseInt(text, 10);
+
+		if (text%1 != 0) {
+	 	alert("Please Enter a Number")
+	 	}
 
 		var delta = Math.abs(guessedNumber-secretNumber)
 		compareNumber(delta);
@@ -73,15 +80,6 @@ $(document).ready(function(){
   		};
 
   	};
-
-
-  	/*--Counter increases--*/
-
-  	/*var numberOfGuess = $("#count");
-
-  	$("#guessButton").click(function(){
-  		numberOfGuess.html(parseInt(numberOfGuess.html(), 10)+1);
-  	});*/
 
   	
 });
