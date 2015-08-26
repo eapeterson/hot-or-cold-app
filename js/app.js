@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 	/*--Use input value and Add to list--*/
   	$(".game").on("click", "#guessButton", function() {
-  		
+  		var error = false;
   		guessedNumber = $("input#userGuess").val();
   
   		var text = $('#userGuess').val();
@@ -45,9 +45,14 @@ $(document).ready(function(){
 
 		parseInt(text, 10);
 
-		if (text%1 != 0) {
-	 	alert("Please Enter a Number")
+		if (text%1 != 0 || isNaN(text) || text < 1 || text > 100) {
+	 	$("#feedback").text("Please Enter an Integer Less than 100 and Greater than 1");
+	 	error = true;
 	 	}
+
+	 	if (error){
+	 		return false
+	 	} 
 
 		var delta = Math.abs(guessedNumber-secretNumber)
 		compareNumber(delta);
