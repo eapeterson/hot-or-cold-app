@@ -62,7 +62,7 @@ $(document).ready(function(){
 
   	function compareNumber (valueOfNumber) {
 
-  		var = msg "";
+  		var msg = "";
 
   		if (valueOfNumber === 0) {
   			msg = "Hooray! You Won!";
